@@ -540,6 +540,106 @@ public class AutomationScripts_Exam extends ReUsableMethods_Exam
 		bw.close();
 		Thread.sleep(5000);
 	}
+	
+	public static void TCID04A() throws IOException
+	{
+		// C:\Users\drpanchal93\workspace-Selenium\SeleniumExamPart1\TestData
+		String dt_Path = "C:/Users/drpanchal93/workspace-Selenium/SeleniumExamPart1/TestData/TCID04A.xls";
+		String [][] recData = ReUsableMethods_Exam.readSheet(dt_Path, "Sheet1");
+		
+		XeroLoginPage xeroLogin = new XeroLoginPage();
+		
+		xeroLogin.launchBrowser();
+		
+		String eId = recData[1][1];
+		xeroLogin.enterEmailAddress(eId);
+		
+		String pwd = recData[1][2];
+		xeroLogin.enterPwd(pwd);
+		
+		xeroLogin.clickLoginButton();
+		
+		XeroDashboardPage Dashboard = new XeroDashboardPage();
+		
+		Dashboard.clickUserMenu();
+		
+		Dashboard.clickLogout();
+		
+		bw.close();
+	}
+	
+	public static void TCID06A() throws IOException, InterruptedException
+	{
+		String dt_Path = "C:/Users/drpanchal93/workspace-Selenium/SeleniumExamPart1/TestData/TCID06A.xls";
+		String [][] recData = ReUsableMethods_Exam.readSheet(dt_Path, "Sheet1");
+		
+		XeroLoginPage xeroLogin = new XeroLoginPage();
+		
+		XeroDashboardPage Dashboard = new XeroDashboardPage();
+		
+		xeroLogin.launchBrowser();
+		String eId = recData[1][1];
+		xeroLogin.enterEmailAddress(eId);
+		String pwd = recData[1][2];
+		xeroLogin.enterPwd(pwd);
+		
+		xeroLogin.clickLoginButton();
+		
+		Dashboard.clickUserMenu();
+		
+		Dashboard.clickProfile();
+		
+		XeroProfileSettingsPage ProfileSettings = new XeroProfileSettingsPage();
+		ProfileSettings.clickUploadImageButton();
+		
+		String PhotoPath = recData[1][3];
+		ProfileSettings.BrowsePhoto(PhotoPath);
+		
+		ProfileSettings.clickUploadButton();
+		
+		bw.close();
+		Thread.sleep(2000);
+		
+	}
+	
+	public static void TCID08A() throws IOException, InterruptedException
+	{
+		String dt_Path = "C:/Users/drpanchal93/workspace-Selenium/SeleniumExamPart1/TestData/TCID08A.xls";
+		String [][] recData = ReUsableMethods_Exam.readSheet(dt_Path, "Sheet1");
+		
+		XeroLandingPage xeroLanding = new XeroLandingPage();
+		xeroLanding.launchBrowser();
+		
+		xeroLanding.clickLoginButton();
+		
+		XeroLoginPage xeroLogin = new XeroLoginPage();
+		
+		String eId = recData[1][1];
+		xeroLogin.enterEmailAddress(eId);
+		String pwd = recData[1][2];
+		xeroLogin.enterPwd(pwd);
+		
+		xeroLogin.clickLoginButton();
+		
+		XeroDashboardPage dashboard = new XeroDashboardPage();
+		dashboard.clickOrgName();
+		dashboard.clickMyXero();
+		
+		MyXeroPage myXero = new MyXeroPage();
+		myXero.clickAddOrg();
+		
+		AddOrganizationPage addOrg = new AddOrganizationPage();
+		String OrgName = recData[1][3]; 
+		addOrg.enterOrgName(OrgName);
+		
+		String CountryName = recData[1][4];
+		addOrg.enterCountryWhichPaysTaxes(CountryName);
+		
+		String  TimeZone = recData[1][5];
+		addOrg.enterTimeZone(TimeZone);
+		bw.close();
+		Thread.sleep(5000);
+	}
 }
 
 
